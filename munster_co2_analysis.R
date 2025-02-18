@@ -43,7 +43,7 @@ population_data <- read.csv("new_munster_districts_population.csv") %>%
     NAME_STADT = trimws(NAME_STADT),
     Population = as.numeric(Population)
   ) %>%
-  complete(Year = full_seq(min(Year):max(Year), 1), NAME_STADT, fill = list(Population = 0))  # Ensure complete time series
+  complete(Year = full_seq(min(Year):max(Year), 1), NAME_STADT, fill = list(Population = 0)) 
 
 # Load energy data 
 energy_data <- read_excel("energy_consumption.xls") %>%
@@ -141,7 +141,7 @@ emission_results <- years %>%
     co2_data %>%
       filter(Year == y) %>%
       left_join(st_drop_geometry(d), by = "Year", relationship = "many-to-many") %>%
-      left_join(d %>% select(district_id, geometry), by = "district_id", relationship = "many-to-many") %>%  # Reattach geometry
+      left_join(d %>% select(district_id, geometry), by = "district_id", relationship = "many-to-many") %>% 
       st_as_sf() %>%
       mutate(
         industry_emission = co2_industry * industrial_weight,
