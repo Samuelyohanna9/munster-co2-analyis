@@ -36,7 +36,7 @@ co2_data <- read_excel("Muenster-CO2-Emissionen_2021.xls") %>%
     co2_commercial = `Gewerbe + Sonstiges`
   )
 
-# Read and preprocess population data
+
 population_data <- read.csv("new_munster_districts_population.csv") %>%
   mutate(
     Year = as.integer(Year),
@@ -45,7 +45,7 @@ population_data <- read.csv("new_munster_districts_population.csv") %>%
   ) %>%
   complete(Year = full_seq(min(Year):max(Year), 1), NAME_STADT, fill = list(Population = 0))  # Ensure complete time series
 
-# Load energy data (assuming similar structure to CO2 data)
+# Load energy data 
 energy_data <- read_excel("energy_consumption.xls") %>%
   mutate(Year = as.integer(Year)) %>%
   rename(
@@ -56,7 +56,7 @@ energy_data <- read_excel("energy_consumption.xls") %>%
   )
 
 
-# Calculate industrial areas with unit handling
+# Calculate industrial areas 
 industrial_areas <- landuse_shapefile %>%
   filter(fclass == "industrial") %>%
   st_intersection(districts) %>%
@@ -64,7 +64,7 @@ industrial_areas <- landuse_shapefile %>%
   group_by(district_id) %>%
   summarise(industrial_area = sum(industrial_area))
 
-# Calculate road density with proper units
+# Calculate road density
 road_density <- roads_shapefile %>%
   st_intersection(districts) %>%
   mutate(
@@ -84,7 +84,7 @@ districts_static <- districts %>%
   )
 
 
-# Create yearly district data by joining population
+# Create yearly district data 
 district_years <- population_data %>%
   split(.$Year) %>%
   map(~{
@@ -153,11 +153,11 @@ emission_results <- years %>%
   })
 
 
-# Ensure emission_results and districts_nb are aligned
-emission_results <- emission_results %>%
-  filter(district_id %in% districts_static$district_id)  # Filter to match districts
 
-# Create a spatial weights matrix for emission_results
+emission_results <- emission_results %>%
+  filter(district_id %in% districts_static$district_id)  
+
+
 emission_results_nb <- poly2nb(emission_results)
 emission_results_weights <- nb2listw(emission_results_nb, style = "W")
 
