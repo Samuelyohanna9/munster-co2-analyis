@@ -1,5 +1,4 @@
 Analysis of CO₂ Emissions and Energy Consumption in Münster
-Overview
 
 This project analyzes CO₂ emissions and energy consumption trends across districts in Münster, Germany, to support the city’s goal of achieving climate neutrality by 2030. The analysis includes spatial, temporal, and machine learning approaches to disaggregate city-level data, forecast future emissions, and identify high-emission districts for targeted interventions.
 Key Features
