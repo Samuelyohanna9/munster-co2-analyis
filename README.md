@@ -71,18 +71,12 @@ Prerequisites
 Running the Project
 
     Clone the repository:
-    bash
-    Copy
 
-    git clone https://github.com/your-username/munster-co2-analysis.git
-
-    Open the R project file (munster-co2-analysis.Rproj) in RStudio.
+    git clone https://github.com/Samuelyohanna9/munster-co2-analysis.git
 
     Run the main script (main.R) to perform the analysis and generate results.
 
     Launch the Shiny app:
-    R
-    Copy
 
     shiny::runApp("shiny_app")
 
@@ -112,15 +106,8 @@ Docker Setup
 
 To ensure reproducibility, a Dockerfile is provided to containerize the project. Follow these steps to build and run the Docker image:
 
-    Build the Docker image:
-    bash
-    Copy
-
-    docker build -t munster-co2-analysis .
-
     Run the Docker container:
-    bash
-    Copy
+
 
     docker run -p 3838:3838 munster-co2-analysis
 
@@ -145,4 +132,4 @@ For questions or feedback, please contact:
 
     Samuel Yohanna
     Email: samuel.yohanna@uni-muenster.de
-    GitHub: samuelyohanna
+    GitHub: samuelyohanna9
